@@ -16,7 +16,6 @@ public class LogServiceImpl implements LogService {
     @Override
     public void insert(Log log) {
 
-        System.out.println(log.toString());
         logDao.insert(log);
     }
 }

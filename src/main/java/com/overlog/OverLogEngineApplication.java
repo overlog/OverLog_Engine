@@ -53,11 +53,13 @@ public class OverLogEngineApplication {
 				String message = new String(body, "UTF-8");
 				System.out.println(" [x] Received '" + message + "'");
 
+				message = message.replaceAll("\"", "");
+				String strArray[] = message.split(",");
 
-				Log log = new Log();
-				log.setText("asdasd");
-				log.setType("a");
+				System.out.println(strArray[1]);
 
+
+				Log log = new Log(strArray[0], strArray[1]);
 				logService.insert(log);
 
 

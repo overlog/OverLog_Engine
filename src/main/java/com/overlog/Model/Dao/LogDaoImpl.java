@@ -33,7 +33,7 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
         String sql = "INSERT INTO log " +
                 "(type, text) VALUES (?, ?)" ;
         getJdbcTemplate().update(sql, new Object[]{
-                log.getText(), log.getText()
+                log.getType(), log.getText()
         });
 
     }
