@@ -1,24 +1,19 @@
-package model;
-import com.sun.org.apache.xpath.internal.operations.String;
-
-import javax.persistence.*;
+package com.overlog.Model;
 
 
-@Entity
-@Table(name = "log")
+import java.io.Serializable;
 
 
-public class log {
+public class Log implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private int id;
-    @Column(name= "type")
     private String type;
-    @Column(name = "text")
     private String text;
 
-    public log(String type, String text){
+    public Log(){}
+
+    public Log(String type, String text){
         this.type = type;
         this.text = text;
 
