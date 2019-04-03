@@ -24,16 +24,9 @@ public class OverLogEngineApplication {
 
 	private final static String QUEUE_NAME = "overlog";
 
-
-
 	public static void main(String[] args) throws IOException, TimeoutException {
-
-
 		ApplicationContext context = SpringApplication.run(OverLogEngineApplication.class, args);
 		LogService logService = context.getBean(LogService.class);
-
-
-
 
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
@@ -48,8 +41,6 @@ public class OverLogEngineApplication {
 			public void handleDelivery(String consumerTag, Envelope envelope,
 									   AMQP.BasicProperties properties, byte[] body)
 					throws IOException {
-
-
 				String message = new String(body, "UTF-8");
 				System.out.println(" [x] Received '" + message + "'");
 
@@ -58,14 +49,10 @@ public class OverLogEngineApplication {
 
 				System.out.println(strArray[1]);
 
-
 				Log log = new Log(strArray[0], strArray[1]);
 				logService.insert(log);
-
-
 			}
 		};
 		channel.basicConsume(QUEUE_NAME, true, consumer);
 	}
-
 }
