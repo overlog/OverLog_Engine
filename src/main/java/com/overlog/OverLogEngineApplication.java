@@ -28,20 +28,32 @@ public class OverLogEngineApplication {
 		ApplicationContext context = SpringApplication.run(OverLogEngineApplication.class, args);
 		LogService logService = context.getBean(LogService.class);
 
+
+
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+		channel.queuePurge(QUEUE_NAME);
+
+		channel.basicQos(1);
+
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-		Consumer consumer = new DefaultConsumer(channel) {
-			@Override
-			public void handleDelivery(String consumerTag, Envelope envelope,
-									   AMQP.BasicProperties properties, byte[] body)
-					throws IOException {
-				String message = new String(body, "UTF-8");
+
+		Object monitor = new Object();
+		DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+			AMQP.BasicProperties replyProps = new AMQP.BasicProperties
+					.Builder()
+					.correlationId(delivery.getProperties().getCorrelationId())
+					.build();
+
+			String response = "Response";
+
+			try {
+				String message = new String(delivery.getBody(), "UTF-8");
 				System.out.println(" [x] Received '" + message + "'");
 
 				message = message.replaceAll("\"", "");
@@ -51,8 +63,37 @@ public class OverLogEngineApplication {
 
 				Log log = new Log(strArray[0], strArray[1]);
 				logService.insert(log);
+
+
+
+			} catch (RuntimeException e) {
+				System.out.println(" [.] " + e.toString());
+			} finally {
+				channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, response.getBytes("UTF-8"));
+				channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+				// RabbitMq consumer worker thread notifies the RPC server owner thread
+				synchronized (monitor) {
+					monitor.notify();
+				}
 			}
 		};
-		channel.basicConsume(QUEUE_NAME, true, consumer);
+
+
+
+
+
+
+
+		channel.basicConsume(QUEUE_NAME, false, deliverCallback, (consumerTag -> { }));
+		// Wait and be prepared to consume the message from RPC client.
+		while (true) {
+			synchronized (monitor) {
+				try {
+					monitor.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

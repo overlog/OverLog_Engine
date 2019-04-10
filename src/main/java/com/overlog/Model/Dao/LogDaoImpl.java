@@ -25,10 +25,6 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
     @Override
     public void insert(Log log) {
 
-        /*String sql = "INSERT INTO log(type, text) VALUES (?, ?)" ;
-        getJdbcTemplate().update(sql, new Object[]{
-                log.getType(), log.getText()
-        });*/
 
         String sql = "INSERT INTO log " +
                 "(type, text) VALUES (?, ?)" ;
