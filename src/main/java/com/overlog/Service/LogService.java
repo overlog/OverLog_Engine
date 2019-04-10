@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 public interface LogService {
 
-    public void insert(Log log);
+    public int insert(Log log);
 
 
 }

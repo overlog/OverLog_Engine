@@ -2,8 +2,10 @@ package com.overlog.Model.Dao;
 
 import com.overlog.Model.Log;
 
+import java.sql.SQLException;
+
 public interface LogDao {
 
-    void insert(Log log);
+    int insert(Log log) ;
 
 }

@@ -62,7 +62,8 @@ public class OverLogEngineApplication {
 				System.out.println(strArray[1]);
 
 				Log log = new Log(strArray[0], strArray[1]);
-				logService.insert(log);
+				int responseID =  logService.insert(log);
+				response = String.valueOf(responseID);
 
 
 

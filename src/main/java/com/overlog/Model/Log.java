@@ -1,8 +1,9 @@
 package com.overlog.Model;
 
 
-import java.io.Serializable;
 
+
+import java.io.Serializable;
 
 public class Log implements Serializable {
 
