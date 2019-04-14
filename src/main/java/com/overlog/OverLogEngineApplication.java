@@ -2,7 +2,9 @@ package com.overlog;
 
 
 import com.overlog.Model.Log;
+import com.overlog.Model.User;
 import com.overlog.Service.LogService;
+import com.overlog.Service.UserService;
 import com.rabbitmq.client.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +29,7 @@ public class OverLogEngineApplication {
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ApplicationContext context = SpringApplication.run(OverLogEngineApplication.class, args);
 		LogService logService = context.getBean(LogService.class);
+		UserService userService = context.getBean(UserService.class);
 
 
 
@@ -50,20 +53,29 @@ public class OverLogEngineApplication {
 					.correlationId(delivery.getProperties().getCorrelationId())
 					.build();
 
-			String response = "Response";
+			String response = "null";
 
 			try {
 				String message = new String(delivery.getBody(), "UTF-8");
 				System.out.println(" [x] Received '" + message + "'");
 
 				message = message.replaceAll("\"", "");
-				String strArray[] = message.split(",");
+				String strArray[] = message.split("seperator");
 
 				System.out.println(strArray[1]);
 
-				Log log = new Log(strArray[0], strArray[1]);
-				int responseID =  logService.insert(log);
-				response = String.valueOf(responseID);
+				if(strArray[0].equals("log")){
+
+					long userID = Long.valueOf(strArray[3]).longValue();
+					Log log = new Log(strArray[1], strArray[2], userID);
+					int responseID =  logService.insert(log);
+					response = String.valueOf(responseID);
+
+				}else if(strArray[0].equals("user")){
+					User user = new User(strArray[1], strArray[2]);
+					long responseID = userService.getUser(user);
+					response = String.valueOf(responseID);
+				}
 
 
 

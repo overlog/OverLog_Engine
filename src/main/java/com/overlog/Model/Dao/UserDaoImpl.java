@@ -1,20 +1,21 @@
 package com.overlog.Model.Dao;
 
-
-
-import com.overlog.Model.Log;
+import com.overlog.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
 
 @Repository
-public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
+public class UserDaoImpl extends JdbcDaoSupport implements UserDao {
 
     @Autowired
     DataSource dataSource;
@@ -24,34 +25,37 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
         setDataSource(dataSource);
     }
 
-
     @Override
-    public int insert(Log log)  {
+    public long getUser(User user){
+
+        String sql = "select id from users where username = '"+ user.getUsername() +"' and passwd = '"+ user.getPasswd() +"'" ;
+        return getJdbcTemplate().queryForObject(sql, long.class);
 
 
-        GeneratedKeyHolder holder = new GeneratedKeyHolder();
-        getJdbcTemplate().update(new PreparedStatementCreator() {
+
+
+    }
+}
+
+
+/*
+new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) {
                 PreparedStatement statement;
                 try {
-                    statement = con.prepareStatement("INSERT INTO log (type, text, userID) VALUES (?, ?, ?) ", Statement.RETURN_GENERATED_KEYS);
-                    statement.setString(1, log.getType());
-                    statement.setString(2, log.getText());
-                    statement.setLong(3, log.getUserID());
+                    statement = con.prepareStatement("select id from users where username = ? and passwd = ?");
+                    statement.setString(1, user.getUsername());
+                    statement.setString(2, user.getPasswd());
                     return statement;
 
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
 
                 }
 
                 return null;
             }
-        }, holder);
+            }
 
-        return (int) holder.getKeys().get("id");
-
-    }
-}
+ */
