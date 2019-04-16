@@ -11,7 +11,12 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
@@ -25,8 +30,13 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
     }
 
 
+
+
+
+
     @Override
     public int insert(Log log)  {
+
 
 
         GeneratedKeyHolder holder = new GeneratedKeyHolder();

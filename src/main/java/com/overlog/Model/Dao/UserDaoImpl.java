@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 
 
 @Repository
@@ -29,8 +30,19 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao {
     public long getUser(User user){
 
         String sql = "select id from users where username = '"+ user.getUsername() +"' and passwd = '"+ user.getPasswd() +"'" ;
-        return getJdbcTemplate().queryForObject(sql, long.class);
 
+        long id;
+        try {
+            id = getJdbcTemplate().queryForObject(
+                    sql, Long.class);
+
+
+        }catch (Exception e){
+            return -1;
+        }
+
+
+        return id;
 
 
 

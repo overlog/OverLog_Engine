@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 @ComponentScan("com.overlog.Service, com.overlog.Model.Dao")
