@@ -11,12 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
 
 @Repository
 public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
@@ -38,17 +34,18 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
     public int insert(Log log)  {
 
 
-
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
         getJdbcTemplate().update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) {
                 PreparedStatement statement;
                 try {
-                    statement = con.prepareStatement("INSERT INTO log (type, text, userID) VALUES (?, ?, ?) ", Statement.RETURN_GENERATED_KEYS);
+                    statement = con.prepareStatement("INSERT INTO log (type, text, userID, date) VALUES (?, ?, ?, ?) ", Statement.RETURN_GENERATED_KEYS);
                     statement.setString(1, log.getType());
                     statement.setString(2, log.getText());
                     statement.setLong(3, log.getUserID());
+                    System.out.println(log.getDate());
+                    statement.setTimestamp(4, log.getDate());
                     return statement;
 
                 }

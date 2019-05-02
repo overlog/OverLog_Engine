@@ -14,6 +14,11 @@ import org.springframework.context.ApplicationContext;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
@@ -68,7 +73,10 @@ public class OverLogEngineApplication {
 				if(strArray[0].equals("log")){
 
 					long userID = Long.valueOf(strArray[3]).longValue();
-					Log log = new Log(strArray[1], strArray[2], userID);
+
+
+					Log log = new Log(strArray[1], strArray[2], userID, convertStringToTimestamp(strArray[4]));
+					System.out.println(log.toString());
 					int responseID =  logService.insert(log);
 					response = String.valueOf(responseID);
 
@@ -92,12 +100,6 @@ public class OverLogEngineApplication {
 			}
 		};
 
-
-
-
-
-
-
 		channel.basicConsume(QUEUE_NAME, false, deliverCallback, (consumerTag -> { }));
 		// Wait and be prepared to consume the message from RPC client.
 		while (true) {
@@ -108,6 +110,21 @@ public class OverLogEngineApplication {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+
+	public static Timestamp convertStringToTimestamp(String str_date) {
+		try {
+			DateFormat formatter;
+			formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			// you can change format of date
+			Date date = formatter.parse(str_date);
+			java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
+
+			return timeStampDate;
+		} catch (ParseException e) {
+			System.out.println("Exception :" + e);
+			return null;
 		}
 	}
 }

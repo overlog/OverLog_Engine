@@ -4,6 +4,8 @@ package com.overlog.Model;
 
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Log implements Serializable {
 
@@ -11,15 +13,26 @@ public class Log implements Serializable {
     private int id;
     private String type;
     private String text;
+    private Timestamp date;
     private long userID;
 
     public Log(){}
 
-    public Log(String type, String text, long userID){
+    public Log(String type, String text, long userID, Timestamp date){
         this.type = type;
         this.text = text;
         this.userID = userID;
+        this.date = date;
 
+    }
+
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
+    public Timestamp getDate() {
+        return date;
     }
 
     public long getUserID() {
@@ -55,11 +68,13 @@ public class Log implements Serializable {
     }
 
     @Override
-    public java.lang.String toString() {
-        return "log{" +
+    public String toString() {
+        return "Log{" +
                 "id=" + id +
-                ", type=" + type +
-                ", text=" + text +
+                ", type='" + type + '\'' +
+                ", text='" + text + '\'' +
+                ", date='" + date + '\'' +
+                ", userID=" + userID +
                 '}';
     }
 
