@@ -9,6 +9,6 @@ CREATE TABLE IF NOT EXISTS log(
 CREATE TABLE IF NOT EXISTS users(
   id	serial primary key,
   username	VARCHAR,
-  passwd VARCHAR
+  passwd VARCHAR,
+  mail  VARCHAR
 );
-

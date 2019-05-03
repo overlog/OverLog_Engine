@@ -13,6 +13,9 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
@@ -25,9 +28,23 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
         setDataSource(dataSource);
     }
 
+    @Override
+    public long selectLog(Timestamp time1, Timestamp time2){
 
 
+        String sql = "SELECT COUNT(*) FROM log WHERE date >= '" + time1 + "'AND date < '" + time2 + "'" ;
 
+        Long total;
+        try {
+            total = getJdbcTemplate().queryForObject(sql, Long.class);
+        }catch (Exception e){
+            return -1;
+        }
+
+
+        return total;
+
+    }
 
 
     @Override

@@ -3,6 +3,7 @@ package com.overlog;
 
 import com.overlog.Model.Log;
 import com.overlog.Model.User;
+import com.overlog.Service.AlertService;
 import com.overlog.Service.LogService;
 import com.overlog.Service.UserService;
 import com.rabbitmq.client.*;
@@ -36,6 +37,7 @@ public class OverLogEngineApplication {
 		ApplicationContext context = SpringApplication.run(OverLogEngineApplication.class, args);
 		LogService logService = context.getBean(LogService.class);
 		UserService userService = context.getBean(UserService.class);
+		AlertService alertService = context.getBean(AlertService.class);
 
 
 
@@ -76,9 +78,10 @@ public class OverLogEngineApplication {
 
 
 					Log log = new Log(strArray[1], strArray[2], userID, convertStringToTimestamp(strArray[4]));
-					System.out.println(log.toString());
 					int responseID =  logService.insert(log);
 					response = String.valueOf(responseID);
+					alertService.alertController(convertStringToTimestamp("2019-05-03 04:00:00"), convertStringToTimestamp("2019-05-03 05:00:00"));
+
 
 				}else if(strArray[0].equals("user")){
 					User user = new User(strArray[1], strArray[2]);

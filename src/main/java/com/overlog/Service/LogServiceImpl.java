@@ -6,6 +6,8 @@ import com.overlog.Model.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+
 @Service
 public class LogServiceImpl implements LogService {
 
@@ -14,8 +16,12 @@ public class LogServiceImpl implements LogService {
 
 
     @Override
-    public int insert(Log log) {
+    public long selectLog(Timestamp time1, Timestamp time2) {
+        return logDao.selectLog(time1, time2);
+    }
 
+    @Override
+    public int insert(Log log) {
         return logDao.insert(log);
     }
 }
