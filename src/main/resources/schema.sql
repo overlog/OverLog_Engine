@@ -12,3 +12,10 @@ CREATE TABLE IF NOT EXISTS users(
   passwd VARCHAR,
   mail  VARCHAR
 );
+
+create table if not exist alert(
+	id serial primary key,
+    type text,
+    starttime timestamp,
+    endtime timestamp
+);
