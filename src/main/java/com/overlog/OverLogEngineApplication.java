@@ -80,7 +80,7 @@ public class OverLogEngineApplication {
 					Log log = new Log(strArray[1], strArray[2], userID, convertStringToTimestamp(strArray[4]));
 					int responseID =  logService.insert(log);
 					response = String.valueOf(responseID);
-					alertService.alertController(convertStringToTimestamp("2019-05-03 04:00:00"), convertStringToTimestamp("2019-05-03 05:00:00"));
+					alertService.alertController(log);
 
 
 				}else if(strArray[0].equals("user")){

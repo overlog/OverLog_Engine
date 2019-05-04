@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 public interface LogDao {
 
-    long selectLog(Timestamp time1, Timestamp time2);
+    long selectLog(Timestamp time1, Timestamp time2, String type);
 
     int insert(Log log) ;
 

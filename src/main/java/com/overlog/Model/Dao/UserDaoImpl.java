@@ -41,33 +41,28 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao {
             return -1;
         }
 
-
         return id;
+    }
 
+    @Override
+    public String getUserMail(int id){
+
+        String sql = "select mail from users where id = " + id ;
+
+        String  mail;
+        try {
+            mail = getJdbcTemplate().queryForObject(
+                    sql, String.class);
+
+
+        }catch (Exception e){
+            return null;
+        }
+
+        return mail;
 
 
     }
+
 }
 
-
-/*
-new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection con) {
-                PreparedStatement statement;
-                try {
-                    statement = con.prepareStatement("select id from users where username = ? and passwd = ?");
-                    statement.setString(1, user.getUsername());
-                    statement.setString(2, user.getPasswd());
-                    return statement;
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                }
-
-                return null;
-            }
-            }
-
- */

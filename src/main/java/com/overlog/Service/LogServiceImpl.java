@@ -16,8 +16,8 @@ public class LogServiceImpl implements LogService {
 
 
     @Override
-    public long selectLog(Timestamp time1, Timestamp time2) {
-        return logDao.selectLog(time1, time2);
+    public long selectLog(Timestamp time1, Timestamp time2, String type) {
+        return logDao.selectLog(time1, time2, type);
     }
 
     @Override

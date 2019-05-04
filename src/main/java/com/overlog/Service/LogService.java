@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 public interface LogService {
 
-    long selectLog(Timestamp time1, Timestamp time2);
+    long selectLog(Timestamp time1, Timestamp time2, String type);
 
     public int insert(Log log);
 

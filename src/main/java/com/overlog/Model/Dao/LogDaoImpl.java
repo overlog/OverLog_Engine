@@ -29,10 +29,10 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
     }
 
     @Override
-    public long selectLog(Timestamp time1, Timestamp time2){
+    public long selectLog(Timestamp time1, Timestamp time2, String type){
 
 
-        String sql = "SELECT COUNT(*) FROM log WHERE date >= '" + time1 + "'AND date < '" + time2 + "'" ;
+        String sql = "SELECT COUNT(*) FROM log WHERE type = '" + type + "' and date >= '" + time1 + "'AND date < '" + time2 + "'" ;
 
         Long total;
         try {
@@ -61,7 +61,6 @@ public class LogDaoImpl extends JdbcDaoSupport implements LogDao{
                     statement.setString(1, log.getType());
                     statement.setString(2, log.getText());
                     statement.setLong(3, log.getUserID());
-                    System.out.println(log.getDate());
                     statement.setTimestamp(4, log.getDate());
                     return statement;
 
