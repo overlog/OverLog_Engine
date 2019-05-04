@@ -13,9 +13,11 @@ CREATE TABLE IF NOT EXISTS users(
   mail  VARCHAR
 );
 
-create table if not exist alert(
+CREATE TABLE IF NOT EXISTS alert(
 	id serial primary key,
-    type text,
+    type VARCHAR,
     starttime timestamp,
-    endtime timestamp
+    endtime timestamp,
+    amount bigint,
+    userID bigint
 );
