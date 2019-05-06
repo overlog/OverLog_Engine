@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a56c6ec0-3987-4498-94f5-8488076ae2af" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Alert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/AlertDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/AlertDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/LogDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/LogDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/LogDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/LogDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Model/Dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/OverLogEngineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/OverLogEngineApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Service/AlertService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Service/AlertService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Service/AlertServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Service/AlertServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Service/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Service/LogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/overlog/Service/LogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/overlog/Service/LogServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="a56c6ec0-3987-4498-94f5-8488076ae2af" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +29,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/overlog/Service/AlertServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
+            <state relative-caret-position="659">
               <caret line="56" column="75" selection-start-line="56" selection-start-column="75" selection-end-line="56" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -393,9 +379,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19743863" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19743863" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -407,7 +392,7 @@
       <window_info id="Job Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32760474" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32760474" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39957035" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -695,7 +680,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/overlog/Service/AlertServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
+        <state relative-caret-position="659">
           <caret line="56" column="75" selection-start-line="56" selection-start-column="75" selection-end-line="56" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
